@@ -18,6 +18,7 @@
 		3A7FB0121CCAA36C008DD221 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7FB00F1CCAA1C6008DD221 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A7FB0151CCAA588008DD221 /* a440.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3A7FB0141CCAA588008DD221 /* a440.caf */; };
 		3A7FB0181CCAAD98008DD221 /* voice-unrooted-076.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3A7FB0171CCAAD98008DD221 /* voice-unrooted-076.caf */; };
+		3A7FB01A1CCACA83008DD221 /* AudioPlayerPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7FB0191CCACA83008DD221 /* AudioPlayerPool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		3A7FB00F1CCAA1C6008DD221 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
 		3A7FB0141CCAA588008DD221 /* a440.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = a440.caf; sourceTree = "<group>"; };
 		3A7FB0171CCAAD98008DD221 /* voice-unrooted-076.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "voice-unrooted-076.caf"; sourceTree = "<group>"; };
+		3A7FB0191CCACA83008DD221 /* AudioPlayerPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerPool.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			children = (
 				3A7FAFE11CCAA11A008DD221 /* AppDelegate.swift */,
 				3A7FAFE31CCAA11A008DD221 /* ViewController.swift */,
+				3A7FB0191CCACA83008DD221 /* AudioPlayerPool.swift */,
 				3A7FAFE51CCAA11A008DD221 /* Main.storyboard */,
 				3A7FAFE81CCAA11A008DD221 /* Assets.xcassets */,
 				3A7FAFEA1CCAA11A008DD221 /* LaunchScreen.storyboard */,
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A7FAFE41CCAA11A008DD221 /* ViewController.swift in Sources */,
+				3A7FB01A1CCACA83008DD221 /* AudioPlayerPool.swift in Sources */,
 				3A7FAFE21CCAA11A008DD221 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
