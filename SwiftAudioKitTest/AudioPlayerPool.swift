@@ -17,9 +17,12 @@ public class AudioPlayerPool {
     var timePitch3 : AKTimePitch!
     
     var audioPlayers: [AKAudioPlayer] = []
+    var audioPlayersState: [Bool] = []
     var mixer : AKMixer!
     
     var pitchShift : Double
+    
+    private let numberOfAudioPlayers = 6
     
     public init(pitchShift: Double = 0.0){
         self.pitchShift = pitchShift
@@ -31,6 +34,9 @@ public class AudioPlayerPool {
     }
     
     public func playFile(name name: String, volume: Double, playerIndex: Int) {
+        
+        returnFreePlayer()
+        
         let audioPlayer: AKAudioPlayer = audioPlayers[playerIndex] // hope its < 3
         audioPlayer.replaceFile(pathForAudioFile(name: name)!)
         stopAudioPlayerIfNecessary(audioPlayer: audioPlayer)
@@ -40,6 +46,12 @@ public class AudioPlayerPool {
     // currently stops ALL audio players
     public func stopFile(name name: String) {
         audioPlayers.forEach { $0.stop() }
+    }
+    
+    private func returnFreePlayer(){
+            for i in 0..<numberOfAudioPlayers {
+                print("return free player \(i)")
+        }
     }
     
     private func makeConfiguredAudioPlayer(name name: String, volume: Double = 1.0, loops: Bool = false) -> AKAudioPlayer? {       // we don't know if it holds a real file path
@@ -68,8 +80,8 @@ public class AudioPlayerPool {
     }
     
     private func populateAudioPlayers() {
-        for _ in 0..<3 {
-            let audioPlayer = makeConfiguredAudioPlayer(name: "voice-unrooted-076", volume: 1.0, loops: false)!
+        for _ in 0..<numberOfAudioPlayers {                    // generate 6 players
+            let audioPlayer = makeConfiguredAudioPlayer(name: "", volume: 1.0, loops: false)!
             audioPlayers.append(audioPlayer)
         }
     }
