@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     @IBAction func playButtonPressed(sender: AnyObject) {
         //print("playButtonPressed")
         //audioPlayerPool.playFile(name: "a440", volume: 1.0)
-        audioPlayerPool.playFile(name: "a440", volume: 1.0, playerIndex: 0)
+        audioPlayerPool.playFile(name: "a440", volume: 1.0)
         
     }
     
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var playButton2: UIButton!
     @IBAction func playButton2Pressed(sender: AnyObject) {
-       audioPlayerPool.playFile(name: "voice-unrooted-076", volume: 1.0, playerIndex: 1)
+       audioPlayerPool.playFile(name: "voice-unrooted-076", volume: 1.0)
     }
     
     @IBOutlet weak var stopButton2: UIButton!
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var playButton3: UIButton!
     @IBAction func playButton3Pressed(sender: AnyObject) {
-        audioPlayerPool.playFile(name: "voice-unrooted-076", volume: 1.0, playerIndex: 2)
+        audioPlayerPool.playFile(name: "voice-unrooted-076", volume: 1.0)
     }
     
     @IBOutlet weak var stopButton3: UIButton!

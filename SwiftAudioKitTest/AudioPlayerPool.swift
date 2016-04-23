@@ -28,16 +28,19 @@ public class AudioPlayerPool {
         self.pitchShift = pitchShift
         mixer = AKMixer()
         populateAudioPlayers()
+        initPlayerState()
+        updatePlayerState()
         for audioPlayer in audioPlayers { mixer.connect(audioPlayer) }
         AudioKit.output = mixer
         AudioKit.start()
     }
     
-    public func playFile(name name: String, volume: Double, playerIndex: Int) {
-        
-        returnFreePlayer()
-        
-        let audioPlayer: AKAudioPlayer = audioPlayers[playerIndex] // hope its < 3
+    public func playFile(name name: String, volume: Double) {
+        var playerIndex : Int = 0
+        updatePlayerState()
+        playerIndex = returnIndexOfFreePlayer()
+        print("playerIndex \(playerIndex)")
+        let audioPlayer: AKAudioPlayer = audioPlayers[playerIndex]
         audioPlayer.replaceFile(pathForAudioFile(name: name)!)
         stopAudioPlayerIfNecessary(audioPlayer: audioPlayer)
         audioPlayer.play()
@@ -48,10 +51,34 @@ public class AudioPlayerPool {
         audioPlayers.forEach { $0.stop() }
     }
     
-    private func returnFreePlayer(){
-            for i in 0..<numberOfAudioPlayers {
-                print("return free player \(i)")
+    private func initPlayerState() {
+        for _ in 0..<numberOfAudioPlayers {
+            audioPlayersState.append(true)
         }
+    }
+    
+    private func updatePlayerState() {
+        for i in 0..<numberOfAudioPlayers {
+            if audioPlayers[i].isPlaying { // for some reason the player stays in isPlaying                             state, even if the sound file is long over
+                audioPlayersState[i] = true
+            } else {
+                audioPlayersState[i] = false
+            }
+        }
+        print(audioPlayersState)
+    }
+    
+    private func returnIndexOfFreePlayer() -> Int{
+        var playerIndex : Int = 0
+            for i in 0..<numberOfAudioPlayers {
+                print(i)
+                if audioPlayersState[i] == false {
+                    playerIndex = i
+                    audioPlayersState[i] = true
+                    break
+                }
+        }
+        return playerIndex
     }
     
     private func makeConfiguredAudioPlayer(name name: String, volume: Double = 1.0, loops: Bool = false) -> AKAudioPlayer? {       // we don't know if it holds a real file path
